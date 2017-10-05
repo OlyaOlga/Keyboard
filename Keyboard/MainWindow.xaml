@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Keyboard"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525" TextInput="user_prints_sth" >
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="79*"/>
+            <ColumnDefinition Width="112*"/>
+            <ColumnDefinition Width="219*"/>
+            <ColumnDefinition Width="107*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock x:Name="InputText" Grid.ColumnSpan="5" HorizontalAlignment="Left" Margin="37,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456" Height="36"/>
+
     </Grid>
 </Window>

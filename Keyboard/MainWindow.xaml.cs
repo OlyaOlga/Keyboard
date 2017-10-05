@@ -24,5 +24,22 @@ namespace Keyboard
         {
             InitializeComponent();
         }
+
+        //private void key_pressed(object sender, KeyEventArgs e)
+        //{
+        //    if (e.IsDown)
+        //    {
+        //        secondNumber2.Text += e.Key;
+        //    }
+        //    else
+        //    {
+        //        secondNumberTextBox.Text += e.Key;
+        //    }
+        //}
+
+        private void user_prints_sth(object sender, TextCompositionEventArgs e)
+        {
+            InputText.Text += e.Text;
+        }
     }
 }

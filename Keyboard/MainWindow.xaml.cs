@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,26 +21,43 @@ namespace Keyboard
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static int invokes=0;
+
+        public static List<char> DataList = new List<char>
+        { 'T', 'h', 'i', 's', ' ', 'i', 's', ' ', 't', 'e', 's', 't', ' ', 's', 't',
+            'r', 'i', 'n', 'g'
+        };
+
+        public string CurrentString()
+        {
+            string result = string.Empty;
+            foreach (var item in DataQueue.ToList())
+            {
+                result += item;
+            }
+            return result;
+        }
+
+        public static Queue<char> DataQueue = new Queue<char>(DataList); 
         public MainWindow()
         {
             InitializeComponent();
+            dataBlock.Text = CurrentString();
         }
-
-        //private void key_pressed(object sender, KeyEventArgs e)
-        //{
-        //    if (e.IsDown)
-        //    {
-        //        secondNumber2.Text += e.Key;
-        //    }
-        //    else
-        //    {
-        //        secondNumberTextBox.Text += e.Key;
-        //    }
-        //}
-
+        
         private void user_prints_sth(object sender, TextCompositionEventArgs e)
         {
+            ++invokes;
             InputText.Text += e.Text;
+            button.Content = invokes.ToString();
+            if (DataQueue.Count!=0 &&
+                e.Text[0] == DataQueue.Peek())
+            {
+                DataQueue.Dequeue();
+            }
+            dataBlock.Text = CurrentString();
         }
+
+
     }
 }

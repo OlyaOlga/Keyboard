@@ -1,0 +1,43 @@
+﻿<Window x:Class="Keyboard.Settings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Keyboard"
+        mc:Ignorable="d"
+        Title="Settings"  ResizeMode="NoResize" Height="180" Width="306.666">
+    <Grid Margin="0,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <GroupBox x:Name="ComplexityGroupBox" Grid.Column="2" Header="Complexity" HorizontalAlignment="Left" VerticalAlignment="Top" Height="38" Width="151">
+            <WrapPanel>
+                <RadioButton x:Name="SimpleRadioButton" Content="Simple" HorizontalAlignment="Left"  Height="Auto"/>
+                <RadioButton x:Name="SimpleRadioButton0" Content="Hard" HorizontalAlignment="Left"  Height="Auto"/>
+            </WrapPanel>
+        </GroupBox>
+        <GroupBox x:Name="LanguageGroupBox" Grid.Column="1" Header="Language" HorizontalAlignment="Left" VerticalAlignment="Top" Height="68" Width="140">
+            <WrapPanel>
+                <RadioButton x:Name="UrkLangRadioButton" Content="Ukraininan" HorizontalAlignment="Left"  VerticalAlignment="Top" />
+                <RadioButton x:Name="EngLangRadioButton" Content="English" HorizontalAlignment="Left"  VerticalAlignment="Top" />
+                <RadioButton x:Name="SymbRadioButton" Content="Special Symbols" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
+            </WrapPanel>
+        </GroupBox>
+        <GroupBox x:Name="TimeGroupBox" Header="Time" HorizontalAlignment="Left" VerticalAlignment="Top" Height="69" Width="141" Grid.Column="1" Margin="0,1,0,0" Grid.Row="1">
+            <WrapPanel>
+                <RadioButton x:Name="OneMinRadioButton" Content="1 minute" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
+                <RadioButton x:Name="TwoMinRadioButton" Content="5 minutes" HorizontalAlignment="Left"  VerticalAlignment="Top" />
+                <RadioButton x:Name="FiveMinRadioButton" Content="10 minutes" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
+            </WrapPanel>
+        </GroupBox>
+
+
+    </Grid>
+</Window>

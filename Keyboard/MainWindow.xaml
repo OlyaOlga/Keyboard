@@ -7,15 +7,18 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525" TextInput="user_prints_sth" >
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0*"/>
-            <ColumnDefinition Width="79*"/>
-            <ColumnDefinition Width="112*"/>
-            <ColumnDefinition Width="219*"/>
-            <ColumnDefinition Width="107*"/>
-        </Grid.ColumnDefinitions>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_Training">
+                    <MenuItem Header="_Start"  />
+                    <MenuItem Header="_Statistics" />
+                    <Separator />
+                    <MenuItem x:Name="Settings" Header="_Settings" Click="Settings_OnClick"/>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
         <TextBlock x:Name="InputText" Grid.ColumnSpan="5" HorizontalAlignment="Left" Margin="35,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456" Height="28"/>
-        <Button x:Name="button" Content="Button" Grid.Column="3" HorizontalAlignment="Left" Margin="42,251,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBlock x:Name="countKeyPressed" Text="" Grid.Column="2" HorizontalAlignment="Left" Margin="0,251,0,0" VerticalAlignment="Top" Width="321" Grid.ColumnSpan="2"/>
         <TextBlock x:Name="dataBlock" Grid.ColumnSpan="5" HorizontalAlignment="Left" Height="24" Margin="10,18,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="497"/>
 
     </Grid>

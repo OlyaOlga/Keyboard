@@ -37,6 +37,9 @@ namespace Keyboard
             }
             return result;
         }
+       
+        public static int CountMistakes = 0;
+        public static int CountCorrect = 0;
 
         public static Queue<char> DataQueue = new Queue<char>(DataList); 
         public MainWindow()
@@ -49,15 +52,31 @@ namespace Keyboard
         {
             ++invokes;
             InputText.Text += e.Text;
-            button.Content = invokes.ToString();
-            if (DataQueue.Count!=0 &&
-                e.Text[0] == DataQueue.Peek())
+            countKeyPressed.Text = invokes.ToString();
+            if (DataQueue.Count != 0)
             {
-                DataQueue.Dequeue();
+                if (e.Text[0] == DataQueue.Peek())
+                {
+                    ++CountCorrect;
+                    DataQueue.Dequeue();
+                }
+                else
+                {
+                    ++CountMistakes;
+                }
+            }
+            else
+            {
+                countKeyPressed.Text = $"Correct: {CountCorrect}, Mistakes: {CountMistakes}, Total: {invokes.ToString()}, mistakes:{(CountMistakes*100)/(CountCorrect+CountMistakes)} %";
             }
             dataBlock.Text = CurrentString();
         }
 
 
+        private void Settings_OnClick(object sender, RoutedEventArgs e)
+        {
+            var sett = new Settings();
+            sett.ShowDialog();
+        }
     }
 }

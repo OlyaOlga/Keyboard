@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Keyboard.ViewModel;
 
 namespace Keyboard
 {
@@ -46,6 +47,10 @@ namespace Keyboard
         {
             InitializeComponent();
             dataBlock.Text = CurrentString();
+            DataContext = new MainWindowViewModel(new WindowMediator() { CreateWindow = () => new Settings() })
+            {
+                Settings = new SettingsViewModel()
+            };
         }
         
         private void user_prints_sth(object sender, TextCompositionEventArgs e)

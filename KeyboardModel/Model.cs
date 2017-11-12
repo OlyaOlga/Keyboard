@@ -28,6 +28,5 @@ namespace KeyboardModel
         {
             return File.ReadAllText(wayToFile);
         }
-
     }
 }

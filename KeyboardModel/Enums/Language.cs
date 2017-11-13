@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KeyboardModel.Enums
 {
-    enum Language
+    public enum Language
     {
         Ukr,
         Eng, 

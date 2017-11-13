@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KeyboardModel.Enums
 {
-    enum Time
+    public enum Time
     {
         OneMinute,
         FiveMinutes,

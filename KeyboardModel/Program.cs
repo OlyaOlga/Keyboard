@@ -13,12 +13,15 @@ namespace KeyboardModel
     {
         static void Main(string[] args)
         {
-            Complexity c = Complexity.Simple;
+           /* Complexity c = Complexity.Simple;
             Time t = Time.FiveMinutes;
             Language l = Language.Ukr;
             Model m = new Model(c,t,l);
-            Console.WriteLine(m.ReadData());
-            Console.ReadKey();
+            Console.WriteLine(m.ReadData());*/
+            string data = "123456";
+            InputTextQueue q = new InputTextQueue(data);
+            Console.WriteLine( q.ToString());
+            Console.ReadKey(); 
         }
     }
 }

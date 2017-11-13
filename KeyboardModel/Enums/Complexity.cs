@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KeyboardModel.Enums
 {
-    enum Complexity
+    public enum Complexity
     {
         Simple,
         Hard

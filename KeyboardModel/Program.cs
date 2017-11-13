@@ -20,10 +20,12 @@ namespace KeyboardModel
             u.Error();
             u.Error();
 
+
             s.Correct();
             s.Correct();
             s.Error();
 
+            var v = s + u;
             StatisticsIdentifier i = new StatisticsIdentifier(Complexity.Hard, Language.Eng, Time.TenMinutes);
             StatisticsIdentifier j = new StatisticsIdentifier(Complexity.Hard, Language.Ukr, Time.TenMinutes);
 

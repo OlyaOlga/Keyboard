@@ -2,10 +2,6 @@
 {
     public class ErrorStatistics
     {
-        public ErrorStatistics()
-        {
-        }
-
         /// <summary>
         /// Gets all answers count
         /// </summary>

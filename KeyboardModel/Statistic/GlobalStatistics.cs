@@ -4,7 +4,10 @@ namespace KeyboardModel.Statistic
 {
     public class GlobalStatistics
     {
-        public Dictionary<StatisticsIdentifier, ErrorStatistics> LocalStatistics { get; set; }
+        /// <summary>
+        /// Gets stored local statistics
+        /// </summary>
+        public Dictionary<StatisticsIdentifier, ErrorStatistics> LocalStatistics { get; }
 
         public GlobalStatistics()
         {

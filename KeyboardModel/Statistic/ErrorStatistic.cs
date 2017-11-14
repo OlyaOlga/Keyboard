@@ -37,5 +37,21 @@
             ++TotalItems;
             ++ErrorItems;
         }
+
+        /// <summary>
+        /// Adds two statistics
+        /// </summary>
+        /// <param name="left">Left operand</param>
+        /// <param name="right">Right operand</param>
+        /// <returns>Returns statistics with sum of total answers and error items</returns>
+        public static ErrorStatistics operator +(ErrorStatistics left, ErrorStatistics right)
+        {
+            ErrorStatistics sum = new ErrorStatistics
+            {
+                TotalItems = left.TotalItems + right.TotalItems,
+                ErrorItems = left.ErrorItems + right.ErrorItems
+            };
+            return sum;
+        }
     }
 }

@@ -1,5 +1,8 @@
 ﻿namespace KeyboardModel.Statistic
 {
+    using System;
+
+    [Serializable]
     public class ErrorStatistics
     {
         /// <summary>

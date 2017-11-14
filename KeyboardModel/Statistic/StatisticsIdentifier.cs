@@ -1,10 +1,12 @@
-﻿using KeyboardModel.Enums;
-
-namespace KeyboardModel.Statistic
+﻿namespace KeyboardModel.Statistic
 {
+    using System;
+    using KeyboardModel.Enums;
+
     /// <summary>
     /// Represent unique identifier in sense of three unemus <see cref="Complexity"/>, <see cref="Language"/>, <see cref="Time"/>
     /// </summary>
+    [Serializable]
     public struct StatisticsIdentifier
     {
         public StatisticsIdentifier(Complexity complexityId, Language languageId, Time timeId)

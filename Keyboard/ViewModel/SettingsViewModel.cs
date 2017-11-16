@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Keyboard.ViewModel
+﻿namespace Keyboard.ViewModel
 {
+    using System.ComponentModel;
+    using System.Runtime.CompilerServices;
+
     public class SettingsViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public SettingsViewModel()
         {
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public bool[] Language { get; set; } = new bool[3];
 

@@ -11,7 +11,11 @@
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel(new WindowMediator() { CreateWindow = () => new Settings() })
+            DataContext = new MainWindowViewModel(
+                    new WindowMediator
+                    {
+                        CreateWindow = () => new Settings()
+                    })
             {
                 Settings = new SettingsViewModel()
             };

@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
-using Keyboard.Command;
-
-namespace Keyboard.ViewModel
+﻿namespace Keyboard.ViewModel
 {
+    using System;
+    using System.ComponentModel;
+    using System.Runtime.CompilerServices;
+    using System.Windows;
+    using System.Windows.Input;
+    using System.Linq;
+    using Keyboard.Command;
+
     public class MainWindowViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public MainWindowViewModel(WindowMediator settings)
         {
             Settings = new SettingsViewModel();
@@ -25,8 +20,10 @@ namespace Keyboard.ViewModel
             KeyDownCommand = new RelayCommand(KeyDown);
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         /// <summary>
-        /// View model for Settings window
+        /// Gets or sets view model for Settings window
         /// </summary>
         public SettingsViewModel Settings { get; set; }
 
@@ -48,25 +45,13 @@ namespace Keyboard.ViewModel
 
         private void Settings_OnClose(object sender, EventArgs e)
         {
-            string lang = "[\n";
-            foreach (var i in Settings.Language)
-            {
-                lang += i + "\n";
-            }
+            string lang = Settings.Language.Aggregate("[\n", (current, i) => current + (i + "\n"));
             lang += "]";
 
-            string time = "[\n";
-            foreach (var i in Settings.Time)
-            {
-                time += i + "\n";
-            }
+            string time = Settings.Time.Aggregate("[\n", (current, i) => current + (i + "\n"));
             time += "]\n";
 
-            string comp = "[\n";
-            foreach (var i in Settings.Complexity)
-            {
-                comp += i + "\n";
-            }
+            string comp = Settings.Complexity.Aggregate("[\n", (current, i) => current + (i + "\n"));
             comp += "]";
 
             MessageBox.Show($"Language: \n{lang}\n Time: \n{time}\n Complexity:\n {comp}");

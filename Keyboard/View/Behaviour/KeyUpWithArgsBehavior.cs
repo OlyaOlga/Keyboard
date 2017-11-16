@@ -1,20 +1,22 @@
-using System.Windows;
 namespace Keyboard.View.Behaviour
 {
+    using System.Windows;
     using System.Windows.Input;
     using System.Windows.Interactivity;
 
+    /// <summary>
+    /// Represend key event behaviour. Suitable for InputDidings in order to path pressed key
+    /// </summary>
     public class KeyUpWithArgsBehavior : Behavior<UIElement>
     {
+        public static readonly DependencyProperty KeyUpCommandProperty =
+            DependencyProperty.Register("KeyUpCommand", typeof(ICommand), typeof(KeyUpWithArgsBehavior), new UIPropertyMetadata(null));
+
         public ICommand KeyUpCommand
         {
             get { return (ICommand)GetValue(KeyUpCommandProperty); }
             set { SetValue(KeyUpCommandProperty, value); }
         }
-
-        public static readonly DependencyProperty KeyUpCommandProperty =
-            DependencyProperty.Register("KeyUpCommand", typeof(ICommand), typeof(KeyUpWithArgsBehavior), new UIPropertyMetadata(null));
-
 
         protected override void OnAttached()
         {

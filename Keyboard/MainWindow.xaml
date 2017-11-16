@@ -4,10 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Keyboard"
+        xmlns:vm="clr-namespace:Keyboard.ViewModel"
         xmlns:properties="clr-namespace:Keyboard.Properties"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525"
-        ResizeMode="NoResize">
+        >
+    <i:Interaction.Behaviors>
+        <vm:KeyUpWithArgsBehavior
+                 KeyUpCommand="{Binding KeyDownCommand}" />
+    </i:Interaction.Behaviors>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="18"></RowDefinition>

@@ -6,6 +6,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
+using System.Windows.Interactivity;
 using Keyboard.Command;
 
 namespace Keyboard.ViewModel
@@ -19,7 +21,9 @@ namespace Keyboard.ViewModel
             Settings = new SettingsViewModel();
             SettingsInvoker = settings;
             SettingsInvoker.OnClose += Settings_OnClose;
+
             OpenSettingsCommand = new RelayCommand(OpenSettings);
+            KeyDownCommand = new RelayCommand(KeyDown);
         }
 
         /// <summary>
@@ -29,7 +33,14 @@ namespace Keyboard.ViewModel
 
         public WindowMediator SettingsInvoker { get; set; }
 
-        public RelayCommand OpenSettingsCommand { get; set; }
+        public ICommand OpenSettingsCommand { get; set; }
+
+        public ICommand KeyDownCommand { get; set; }
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         private void OpenSettings(object parametr)
         {
@@ -62,9 +73,42 @@ namespace Keyboard.ViewModel
             MessageBox.Show($"Language: \n{lang}\n Time: \n{time}\n Complexity:\n {comp}");
         }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private void KeyDown(object parameter)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            Console.WriteLine($"key down -> [{parameter?.ToString()}]");
+        }
+    }
+
+    public class KeyUpWithArgsBehavior : Behavior<UIElement>
+    {
+        public ICommand KeyUpCommand
+        {
+            get { return (ICommand)GetValue(KeyUpCommandProperty); }
+            set { SetValue(KeyUpCommandProperty, value); }
+        }
+
+        public static readonly DependencyProperty KeyUpCommandProperty =
+            DependencyProperty.Register("KeyUpCommand", typeof(ICommand), typeof(KeyUpWithArgsBehavior), new UIPropertyMetadata(null));
+
+
+        protected override void OnAttached()
+        {
+            AssociatedObject.KeyUp += new KeyEventHandler(AssociatedObjectKeyUp);
+            base.OnAttached();
+        }
+
+        protected override void OnDetaching()
+        {
+            AssociatedObject.KeyUp -= new KeyEventHandler(AssociatedObjectKeyUp);
+            base.OnDetaching();
+        }
+
+        private void AssociatedObjectKeyUp(object sender, KeyEventArgs e)
+        {
+            if (KeyUpCommand != null)
+            {
+                KeyUpCommand.Execute(e.Key);
+            }
         }
     }
 }

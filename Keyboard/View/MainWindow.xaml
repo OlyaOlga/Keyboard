@@ -1,4 +1,4 @@
-﻿<Window x:Class="Keyboard.MainWindow"
+﻿<Window x:Class="Keyboard.View.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,11 +8,12 @@
         xmlns:properties="clr-namespace:Keyboard.Properties"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+        xmlns:behaviour="clr-namespace:Keyboard.View.Behaviour"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525"
         >
     <i:Interaction.Behaviors>
-        <vm:KeyUpWithArgsBehavior
+        <behaviour:KeyUpWithArgsBehavior
                  KeyUpCommand="{Binding KeyDownCommand}" />
     </i:Interaction.Behaviors>
     
@@ -38,7 +39,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Image Grid.Column="0" Width="100" Height="100" Source="Images/pac-man-v2.png"/>
+                <Image Grid.Column="0" Width="100" Height="100" Source="../Images/pac-man-v2.png"/>
                 
                 <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Disabled"
                               VerticalScrollBarVisibility="Auto">

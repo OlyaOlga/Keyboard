@@ -4,10 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Keyboard"
+        xmlns:properties="clr-namespace:Keyboard.Properties"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" TextInput="user_prints_sth" >
+        Title="MainWindow" Height="350" Width="525"
+        ResizeMode="NoResize">
     <Grid>
-        <DockPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="18"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_Training">
                     <MenuItem Header="_Start"  />
@@ -17,9 +23,32 @@
                 </MenuItem>
             </Menu>
         </DockPanel>
-        <TextBlock x:Name="InputText" Grid.ColumnSpan="5" HorizontalAlignment="Left" Margin="35,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="456" Height="28"/>
-        <TextBlock x:Name="countKeyPressed" Text="" Grid.Column="2" HorizontalAlignment="Left" Margin="0,251,0,0" VerticalAlignment="Top" Width="321" Grid.ColumnSpan="2"/>
-        <TextBlock x:Name="dataBlock" Grid.ColumnSpan="5" HorizontalAlignment="Left" Height="24" Margin="10,18,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="497"/>
+        <DockPanel Dock="Top" Grid.Row="1" Height="100" VerticalAlignment="Top">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0" Width="100" Height="100" Source="Images/pac-man-v2.png"/>
+                
+                <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Disabled"
+                              VerticalScrollBarVisibility="Auto">
+                    <TextBlock
+                        Text="The player controls Pac-Man through a maze of various dots,
+                               known as Pac-Dots, as well as four multi-colored ghosts: Blinky,
+                               Pinky, Inky, and Clyde. The goal of the game is to consume all the
+                               Pac-Dots in a stage in order to proceed to the next one. Between some stages
+                               Pac-Dots in a stage in order to proceed to the next one. Between some stages
+                               Pac-Dots in a stage in order to proceed to the next one. Between some stages
+                               Pac-Dots in a stage in order to proceed to the next one. Between some stages"
+                               Height="Auto" TextWrapping="WrapWithOverflow" Width="Auto"
+                               ></TextBlock>
+                </ScrollViewer>
+                
+            </Grid>
+        </DockPanel>
+
 
     </Grid>
 </Window>

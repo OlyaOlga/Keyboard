@@ -1,9 +1,9 @@
-﻿using System;
-using System.Diagnostics;
-using System.Windows.Input;
-
-namespace Keyboard.Command
+﻿namespace Keyboard.Command
 {
+    using System;
+    using System.Diagnostics;
+    using System.Windows.Input;
+
     /// <summary>
     /// A command whose sole purpose is to 
     /// relay its functionality to other
@@ -24,7 +24,7 @@ namespace Keyboard.Command
         #region Constructors
 
         /// <summary>
-        /// Creates a new command that can always execute.
+        /// Initializes a new instance of the <see cref="RelayCommand"/> class
         /// </summary>
         /// <param name="execute">The execution logic.</param>
         public RelayCommand(Action<object> execute)
@@ -33,7 +33,7 @@ namespace Keyboard.Command
         }
 
         /// <summary>
-        /// Creates a new command.
+        /// Initializes a new instance of the <see cref="RelayCommand"/> class
         /// </summary>
         /// <param name="execute">The execution logic.</param>
         /// <param name="canExecute">The execution status logic.</param>

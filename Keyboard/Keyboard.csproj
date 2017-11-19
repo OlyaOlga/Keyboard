@@ -57,7 +57,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\KeyToCharExtension.cs" />
+    <Compile Include="ViewModel\ViewModelExtension\KeyToCharExtension.cs" />
+    <Compile Include="ViewModel\ViewModelExtension\EnumBuilder.cs" />
     <Compile Include="View\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
@@ -112,9 +113,17 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\KeyboardModel\KeyboardModel.csproj">
+      <Project>{32a770f9-faf1-45fb-a769-a631c5fcfb99}</Project>
+      <Name>KeyboardModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\pac-man-v2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

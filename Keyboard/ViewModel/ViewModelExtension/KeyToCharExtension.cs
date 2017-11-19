@@ -1,4 +1,4 @@
-﻿namespace Keyboard.Model
+﻿namespace Keyboard.ViewModel.ViewModelExtension
 {
     using System.Runtime.InteropServices;
     using System.Text;
@@ -13,22 +13,6 @@
             MAPVK_VK_TO_CHAR = 0x2,
             MAPVK_VSC_TO_VK_EX = 0x3,
         }
-
-        [DllImport("user32.dll")]
-        private static extern int ToUnicode(
-            uint virtKey,
-            uint scanCode,
-            byte[] keyState,
-            [Out, MarshalAs(UnmanagedType.LPWStr, SizeParamIndex = 4)]
-                StringBuilder pwszBuff,
-            int cchBuff,
-            uint flags);
-
-        [DllImport("user32.dll")]
-        private static extern bool GetKeyboardState(byte[] keyState);
-
-        [DllImport("user32.dll")]
-        private static extern uint MapVirtualKey(uint code, MapType mapType);
 
         /// <summary>
         /// Converts virtual key to real char
@@ -68,5 +52,21 @@
 
             return ch;
         }
+
+        [DllImport("user32.dll")]
+        private static extern int ToUnicode(
+            uint virtKey,
+            uint scanCode,
+            byte[] keyState,
+            [Out, MarshalAs(UnmanagedType.LPWStr, SizeParamIndex = 4)]
+                StringBuilder pwszBuff,
+            int cchBuff,
+            uint flags);
+
+        [DllImport("user32.dll")]
+        private static extern bool GetKeyboardState(byte[] keyState);
+
+        [DllImport("user32.dll")]
+        private static extern uint MapVirtualKey(uint code, MapType mapType);
     }
 }

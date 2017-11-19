@@ -1,4 +1,5 @@
-﻿using Keyboard.Model;
+﻿using Keyboard.ViewModel.ViewModelExtension;
+using KeyboardModel.Statistic;
 
 namespace Keyboard.ViewModel
 {
@@ -36,6 +37,11 @@ namespace Keyboard.ViewModel
 
         public ICommand KeyDownCommand { get; set; }
 
+        /// <summary>
+        /// Gets or sets current settings (time, complexity, etc.)
+        /// </summary>
+        public StatisticsIdentifier CurrentSettings { get; set; }
+
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -48,16 +54,7 @@ namespace Keyboard.ViewModel
 
         private void Settings_OnClose(object sender, EventArgs e)
         {
-            string lang = Settings.Language.Aggregate("[\n", (current, i) => current + (i + "\n"));
-            lang += "]";
-
-            string time = Settings.Time.Aggregate("[\n", (current, i) => current + (i + "\n"));
-            time += "]\n";
-
-            string comp = Settings.Complexity.Aggregate("[\n", (current, i) => current + (i + "\n"));
-            comp += "]";
-
-            MessageBox.Show($"Language: \n{lang}\n Time: \n{time}\n Complexity:\n {comp}");
+            CurrentSettings = Settings.Setting;
         }
 
         private void KeyDown(object parameter)

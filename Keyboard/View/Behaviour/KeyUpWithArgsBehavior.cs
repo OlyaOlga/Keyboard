@@ -34,7 +34,6 @@ namespace Keyboard.View.Behaviour
         {
             if (KeyUpCommand != null)
             {
-                
                 KeyUpCommand.Execute(e.Key);
             }
         }

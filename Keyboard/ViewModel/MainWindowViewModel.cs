@@ -1,7 +1,4 @@
-﻿using Keyboard.ViewModel.ViewModelExtension;
-using KeyboardModel.Statistic;
-
-namespace Keyboard.ViewModel
+﻿namespace Keyboard.ViewModel
 {
     using System;
     using System.ComponentModel;
@@ -10,6 +7,8 @@ namespace Keyboard.ViewModel
     using System.Windows.Input;
     using System.Linq;
     using Keyboard.Command;
+    using Keyboard.ViewModel.ViewModelExtension;
+    using KeyboardModel.Statistic;
 
     public class MainWindowViewModel : INotifyPropertyChanged
     {
@@ -21,7 +20,6 @@ namespace Keyboard.ViewModel
 
             OpenSettingsCommand = new RelayCommand(OpenSettings);
             KeyDownCommand = new RelayCommand(KeyDown);
-
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -60,7 +58,6 @@ namespace Keyboard.ViewModel
         private void KeyDown(object parameter)
         {
             var key = (Key) parameter;
-            Console.WriteLine($"key down -> [{parameter?.ToString()}]");
             Console.WriteLine(key.GetCharFromKey());
         }
     }

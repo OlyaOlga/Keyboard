@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using KeyboardModel.Annotations;
 using KeyboardModel.Enums;
 
@@ -14,24 +15,30 @@ namespace KeyboardModel
     public class Model:
         INotifyPropertyChanged
     {
-        private Queue<char> symbols;
+        
+        private InputTextQueue text;
+        private Timer timer;
         public Complexity Complexity { get; set; }
         public Time Time { get; set; }
         public Language Language { get; set; }
-        private string wayToFile;
-
-        public Queue<char> Symbols
-        {
-            get
-            {
-                return symbols;
-            }
+        public Timer Timer {
+            get { return timer; }
             set
             {
-                symbols = value;
-                OnPropertyChanged(nameof(Symbols));
+                timer = value;
+                OnPropertyChanged(nameof(Timer));
+            } }
+        public InputTextQueue Text
+        {
+            get { return text; }
+            set
+            {
+                text = value;
+                OnPropertyChanged(nameof(Text));
             }
         }
+
+        private string wayToFile;
 
         public Model(Complexity complexity, Time time, Language language)
         {
@@ -39,14 +46,32 @@ namespace KeyboardModel
             Time = time;
             Language = language;
             wayToFile = complexity.ToString() + '/' + language.ToString()+".txt";
-            Console.WriteLine(wayToFile);
+            Text = new InputTextQueue(File.ReadAllText(wayToFile));
+            Timer = new Timer(300);
+            Timer.Elapsed += OnTimeElapsed;
         }
 
-        public string ReadData()
+        private int quantity = 0;
+
+        public void OnTimeElapsed(object sender, ElapsedEventArgs e)
         {
-            return File.ReadAllText(wayToFile);
+            Console.WriteLine("time");
+            System.Timers.Timer t = sender as System.Timers.Timer;
+            Console.WriteLine(e.SignalTime);
+            if (t!=null)
+            {
+                if ((int) Time/300 < quantity)
+                {
+                    t.Stop();
+                }
+            }
+            ++quantity;
         }
 
+        public void StartTimer()
+        {
+            Timer.Start();
+        }
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

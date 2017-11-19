@@ -24,6 +24,16 @@ namespace KeyboardModel
             }
         }
 
+        public char Peek()
+        {
+            return Data.Peek();
+        }
+
+        public void Pop()
+        {
+            Data.Dequeue();
+        }
+
         public InputTextQueue(string data)
         {
             Data = new Queue<char>();
@@ -35,13 +45,7 @@ namespace KeyboardModel
 
         public override string ToString()
         {
-            string total= string.Empty;
-            //List<char> queueList = Data.ToList();
-            foreach (var item in Data)
-            {
-                total += item;
-            }
-            return total;
+            return Data.Aggregate(string.Empty, (current, item) => current + item);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -12,9 +12,12 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525"
         >
+    <Window.InputBindings>
+        <KeyBinding></KeyBinding>
+    </Window.InputBindings>
     <i:Interaction.Behaviors>
         <behaviour:KeyUpWithArgsBehavior
-                 KeyUpCommand="{Binding KeyDownCommand}" />
+                 KeyUpCommand="{Binding KeyDownCommand}"/>
     </i:Interaction.Behaviors>
     
     <Grid>

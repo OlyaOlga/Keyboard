@@ -20,13 +20,13 @@ namespace Keyboard.View.Behaviour
 
         protected override void OnAttached()
         {
-            AssociatedObject.KeyUp += new KeyEventHandler(AssociatedObjectKeyUp);
+            AssociatedObject.KeyDown += new KeyEventHandler(AssociatedObjectKeyUp);
             base.OnAttached();
         }
 
         protected override void OnDetaching()
         {
-            AssociatedObject.KeyUp -= new KeyEventHandler(AssociatedObjectKeyUp);
+            AssociatedObject.KeyDown -= new KeyEventHandler(AssociatedObjectKeyUp);
             base.OnDetaching();
         }
 
@@ -34,6 +34,7 @@ namespace Keyboard.View.Behaviour
         {
             if (KeyUpCommand != null)
             {
+                
                 KeyUpCommand.Execute(e.Key);
             }
         }

@@ -48,8 +48,12 @@
     <Compile Include="Enums\Time.cs" />
     <Compile Include="InputTextQueue.cs" />
     <Compile Include="Model.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Program.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Properties\Annotations.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RemainedTimeTimer.cs">
       <SubType>Component</SubType>

@@ -5,17 +5,16 @@ namespace KeyboardModel
     using System.Runtime.CompilerServices;
     using System.Timers;
     using KeyboardModel.Annotations;
-    using KeyboardModel.Enums;
 
     public class RemainedTimeTimer : Timer, INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public RemainedTimeTimer(double interval):
+        public RemainedTimeTimer(double interval) :
             base(interval)
         {
             this.AutoReset = true;
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public DateTime StartTime { get; private set; }
 
@@ -27,7 +26,7 @@ namespace KeyboardModel
         {
             base.Start();
             StartTime = DateTime.Now;
-            EndTime = StartTime.AddMilliseconds(base.Interval);
+            EndTime = StartTime.AddMilliseconds(Interval);
         }
 
         [NotifyPropertyChangedInvocator]

@@ -4,24 +4,21 @@
     using System.ComponentModel;
     using System.IO;
     using System.Runtime.CompilerServices;
-    using System.Timers;
     using KeyboardModel.Annotations;
     using KeyboardModel.Enums;
 
     public class Model : INotifyPropertyChanged
     {
         private InputTextQueue text;
-        private string wayToFile;
-        private int quantity = 0;
 
         public Model(Complexity complexity, Time time, Language language)
         {
             Complexity = complexity;
             Time = time;
             Language = language;
-            wayToFile = complexity.ToString() + '/' + language.ToString() + ".txt";
-            Text = new InputTextQueue(File.ReadAllText(wayToFile));
-            Timer = new RemainedTimeTimer(60000*(int)Time);
+            var path = complexity.ToString() + '/' + language.ToString() + ".txt";
+            Text = new InputTextQueue(File.ReadAllText(path));
+            Timer = new RemainedTimeTimer(60000 * (int)Time);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

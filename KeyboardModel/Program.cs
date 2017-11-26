@@ -8,6 +8,5 @@ namespace KeyboardModel
         {
             Console.ReadKey(); 
         }
-       
     }
 }

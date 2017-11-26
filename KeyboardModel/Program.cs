@@ -15,7 +15,7 @@ namespace KeyboardModel
         static void Main(string[] args)
         {
 
-            Model m = new Model(Complexity.Hard, Time.OneMinute, Language.Eng);
+            KeyboardSimulatorModel m = new KeyboardSimulatorModel(Complexity.Hard, Time.OneMinute, Language.Eng);
             m.StartTimer();
             m.CheckCurrentSymbol('H');
             m.CheckCurrentSymbol('D');

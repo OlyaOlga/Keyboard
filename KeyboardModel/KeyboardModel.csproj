@@ -47,7 +47,7 @@
     <Compile Include="Enums\Language.cs" />
     <Compile Include="Enums\Time.cs" />
     <Compile Include="InputTextQueue.cs" />
-    <Compile Include="Model.cs" />
+    <Compile Include="KeyboardSimulatorModel.cs" />
     <Compile Include="Program.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>

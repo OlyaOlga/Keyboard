@@ -9,13 +9,13 @@ namespace KeyboardModel
     using KeyboardModel.Annotations;
     using KeyboardModel.Enums;
 
-    public class Model : INotifyPropertyChanged
+    public class KeyboardSimulatorModel : INotifyPropertyChanged
     {
         private InputTextQueue text;
 
         private string fileName = "statistics.txt";
 
-        public Model(Complexity complexity, Time time, Language language)
+        public KeyboardSimulatorModel(Complexity complexity, Time time, Language language)
         {
             Complexity = complexity;
             Time = time;

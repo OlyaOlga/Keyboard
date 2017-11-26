@@ -1,35 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using Keyboard.Command;
-
-namespace Keyboard.ViewModel
+﻿namespace Keyboard.ViewModel
 {
+    using System;
+    using System.ComponentModel;
+    using System.Runtime.CompilerServices;
+    using System.Windows;
+    using System.Windows.Input;
+    using System.Linq;
+    using Keyboard.Command;
+    using Keyboard.ViewModel.ViewModelExtension;
+    using KeyboardModel.Statistic;
+
     public class MainWindowViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public MainWindowViewModel(WindowMediator settings)
         {
             Settings = new SettingsViewModel();
             SettingsInvoker = settings;
             SettingsInvoker.OnClose += Settings_OnClose;
+
             OpenSettingsCommand = new RelayCommand(OpenSettings);
+            KeyDownCommand = new RelayCommand(KeyDown);
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         /// <summary>
-        /// View model for Settings window
+        /// Gets or sets view model for Settings window
         /// </summary>
         public SettingsViewModel Settings { get; set; }
 
         public WindowMediator SettingsInvoker { get; set; }
 
-        public RelayCommand OpenSettingsCommand { get; set; }
+        public ICommand OpenSettingsCommand { get; set; }
+
+        public ICommand KeyDownCommand { get; set; }
+
+        /// <summary>
+        /// Gets or sets current settings (time, complexity, etc.)
+        /// </summary>
+        public StatisticsIdentifier CurrentSettings { get; set; }
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         private void OpenSettings(object parametr)
         {
@@ -38,33 +52,13 @@ namespace Keyboard.ViewModel
 
         private void Settings_OnClose(object sender, EventArgs e)
         {
-            string lang = "[\n";
-            foreach (var i in Settings.Language)
-            {
-                lang += i + "\n";
-            }
-            lang += "]";
-
-            string time = "[\n";
-            foreach (var i in Settings.Time)
-            {
-                time += i + "\n";
-            }
-            time += "]\n";
-
-            string comp = "[\n";
-            foreach (var i in Settings.Complexity)
-            {
-                comp += i + "\n";
-            }
-            comp += "]";
-
-            MessageBox.Show($"Language: \n{lang}\n Time: \n{time}\n Complexity:\n {comp}");
+            CurrentSettings = Settings.Setting;
         }
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private void KeyDown(object parameter)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            var key = (Key) parameter;
+            Console.WriteLine(key.GetCharFromKey());
         }
     }
 }

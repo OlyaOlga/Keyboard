@@ -10,7 +10,7 @@
         xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
         xmlns:behaviour="clr-namespace:Keyboard.View.Behaviour"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525"
+        Title="Keyboard simulator" Height="350" Width="525"
         >
     <Window.InputBindings>
         <KeyBinding></KeyBinding>

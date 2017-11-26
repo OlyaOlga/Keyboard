@@ -14,7 +14,17 @@ namespace KeyboardModel
     {
         static void Main(string[] args)
         {
-            Console.ReadKey(); 
+
+            Model m = new Model(Complexity.Hard, Time.OneMinute, Language.Eng);
+            m.StartTimer();
+            m.CheckCurrentSymbol('H');
+            m.CheckCurrentSymbol('D');
+            m.CheckCurrentSymbol('D');
+            m.CheckCurrentSymbol('A');
+            m.CheckCurrentSymbol('A');
+            Console.WriteLine(m.ErrorStatistics.Result.Correct);
+            Console.WriteLine(m.ErrorStatistics.Result.Error);
+            Console.ReadKey();
         }
     }
 }

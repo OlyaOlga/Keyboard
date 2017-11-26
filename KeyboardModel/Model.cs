@@ -1,4 +1,6 @@
-﻿namespace KeyboardModel
+﻿using KeyboardModel.Statistic;
+
+namespace KeyboardModel
 {
     using System;
     using System.ComponentModel;
@@ -11,6 +13,8 @@
     {
         private InputTextQueue text;
 
+        private string fileName = "statistics.txt";
+
         public Model(Complexity complexity, Time time, Language language)
         {
             Complexity = complexity;
@@ -19,6 +23,8 @@
             var path = complexity.ToString() + '/' + language.ToString() + ".txt";
             Text = new InputTextQueue(File.ReadAllText(path));
             Timer = new RemainedTimeTimer(60000 * (int)Time);
+            StatisticsIdentifier = new StatisticsIdentifier(complexity, language, time);
+            ErrorStatistics = new ErrorStatistics();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -45,9 +51,36 @@
 
         public RemainedTimeTimer Timer { get; }
 
+        public StatisticsIdentifier StatisticsIdentifier { get; set; }
+
+        public ErrorStatistics ErrorStatistics { get; set; }
+
+        public void CheckCurrentSymbol(char symb)
+        {
+            if (symb == Text.Peek())
+            {
+                ErrorStatistics.Correct();
+                Text.Pop();
+            }
+            else
+            {
+                ErrorStatistics.Error();
+            }
+        }
+
         public void StartTimer()
         {
             Timer.Start();
+        }
+
+        public void Correct()
+        {
+            ErrorStatistics.Correct();
+        }
+
+        public void Error()
+        {
+            ErrorStatistics.Error();
         }
 
         [NotifyPropertyChangedInvocator]

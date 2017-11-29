@@ -27,6 +27,18 @@ namespace KeyboardModel
             ErrorStatistics = new ErrorStatistics();
         }
 
+        public KeyboardSimulatorModel(StatisticsIdentifier identifier)
+        {
+            Complexity = identifier.ComplexityID;
+            Time = identifier.TimeID;
+            Language = identifier.LanguageID;
+            var path = Complexity.ToString() + '/' + Language.ToString() + ".txt";
+            Text = new InputTextQueue(File.ReadAllText(path));
+            Timer = new RemainedTimeTimer(60000 * (int)Time);
+            StatisticsIdentifier = new StatisticsIdentifier(Complexity, Language, Time);
+            ErrorStatistics = new ErrorStatistics();
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Complexity Complexity { get; set; }

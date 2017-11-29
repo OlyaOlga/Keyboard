@@ -20,29 +20,29 @@
         <GroupBox x:Name="ComplexityGroupBox" Grid.Column="2" Header="Complexity" HorizontalAlignment="Left" VerticalAlignment="Top" Height="38" Width="151">
             <WrapPanel>
                 <RadioButton x:Name="SimpleRadioButton" Content="Simple" HorizontalAlignment="Left"  Height="Auto"
-                             IsChecked="{Binding Complexity[0], Mode=TwoWay}"/>
+                             IsChecked="{Binding ComplexityRadioBox[0], Mode=TwoWay}"/>
                 <RadioButton x:Name="SimpleRadioButton0" Content="Hard" HorizontalAlignment="Left"  Height="Auto"
-                             IsChecked="{Binding Complexity[1], Mode=TwoWay}"/>
+                             IsChecked="{Binding ComplexityRadioBox[1], Mode=TwoWay}"/>
             </WrapPanel>
         </GroupBox>
         <GroupBox x:Name="LanguageGroupBox" Grid.Column="1" Header="Language" HorizontalAlignment="Left" VerticalAlignment="Top" Height="68" Width="140">
             <WrapPanel>
                 <RadioButton x:Name="UrkLangRadioButton" Content="Ukraininan" HorizontalAlignment="Left"  VerticalAlignment="Top" 
-                             IsChecked="{Binding Language[0], Mode=TwoWay}"/>
+                             IsChecked="{Binding LanguageRadioBox[0], Mode=TwoWay}"/>
                 <RadioButton x:Name="EngLangRadioButton" Content="English" HorizontalAlignment="Left"  VerticalAlignment="Top" 
-                             IsChecked="{Binding Language[1], Mode=TwoWay}"/>
+                             IsChecked="{Binding LanguageRadioBox[1], Mode=TwoWay}"/>
                 <RadioButton x:Name="SymbRadioButton" Content="Special Symbols" HorizontalAlignment="Left"  VerticalAlignment="Top"
-                             IsChecked="{Binding Language[2], Mode=TwoWay}"/>
+                             IsChecked="{Binding LanguageRadioBox[2], Mode=TwoWay}"/>
             </WrapPanel>
         </GroupBox>
         <GroupBox x:Name="TimeGroupBox" Header="Time" HorizontalAlignment="Left" VerticalAlignment="Top" Height="69" Width="141" Grid.Column="1" Margin="0,1,0,0" Grid.Row="1">
             <WrapPanel>
                 <RadioButton x:Name="OneMinRadioButton" Content="1 minute" HorizontalAlignment="Left"  VerticalAlignment="Top"
-                             IsChecked="{Binding Time[0], Mode=TwoWay}"/>
+                             IsChecked="{Binding TimeRadioBox[0], Mode=TwoWay}"/>
                 <RadioButton x:Name="TwoMinRadioButton" Content="5 minutes" HorizontalAlignment="Left"  VerticalAlignment="Top" 
-                             IsChecked="{Binding Time[1], Mode=TwoWay}"/>
+                             IsChecked="{Binding TimeRadioBox[1], Mode=TwoWay}"/>
                 <RadioButton x:Name="FiveMinRadioButton" Content="10 minutes" HorizontalAlignment="Left"  VerticalAlignment="Top"
-                             IsChecked="{Binding Time[2], Mode=TwoWay}"/>
+                             IsChecked="{Binding TimeRadioBox[2], Mode=TwoWay}"/>
             </WrapPanel>
         </GroupBox>
 

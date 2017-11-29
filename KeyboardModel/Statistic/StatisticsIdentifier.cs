@@ -1,4 +1,8 @@
-﻿namespace KeyboardModel.Statistic
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using KeyboardModel.Annotations;
+
+namespace KeyboardModel.Statistic
 {
     using System;
     using KeyboardModel.Enums;
@@ -7,20 +11,48 @@
     /// Represent unique identifier in sense of three unemus <see cref="Complexity"/>, <see cref="Language"/>, <see cref="Time"/>
     /// </summary>
     [Serializable]
-    public struct StatisticsIdentifier
+    public struct StatisticsIdentifier:
+        INotifyPropertyChanged
     {
-        public StatisticsIdentifier(Complexity complexityId, Language languageId, Time timeId)
+        private Complexity complexityID;
+        private Language languageID;
+        private Time timeID;
+        public StatisticsIdentifier(Complexity complexityId, Language languageId, Time timeId):this()
         {
             ComplexityID = complexityId;
             LanguageID = languageId;
             TimeID = timeId;
         }
 
-        public Complexity ComplexityID { get; }
+        public Complexity ComplexityID
+        {
+            get { return complexityID; }
+            set
+            {
+                complexityID = value;
+                OnPropertyChanged(nameof(ComplexityID));
+            }
+        }
 
-        public Language LanguageID { get; }
+        public Language LanguageID
+        {
+            get { return languageID; }
+            set
+            {
+                languageID = value;
+                OnPropertyChanged(nameof(LanguageID));
+            }
+        }
 
-        public Time TimeID { get; }
+        public Time TimeID
+        {
+            get { return timeID; }
+            set
+            {
+                timeID = value;
+                OnPropertyChanged(nameof(TimeID));
+            }
+        }
 
         public bool Equals(StatisticsIdentifier other)
         {
@@ -53,6 +85,14 @@
         public static bool operator !=(StatisticsIdentifier left, StatisticsIdentifier right)
         {
             return !(left == right);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

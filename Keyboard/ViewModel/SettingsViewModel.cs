@@ -8,17 +8,59 @@
 
     public class SettingsViewModel : INotifyPropertyChanged
     {
+        private bool[] languageRadioBox;
+
+        private bool[] timeRadioBox;
+
+        private bool[] complexityRadioBox;
+
         public SettingsViewModel()
         {
+            LanguageRadioBox = new bool[3];
+            TimeRadioBox = new bool[3];
+            ComplexityRadioBox = new bool[2];
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public bool[] LanguageRadioBox { get; set; } = new bool[3];
+        public bool[] LanguageRadioBox
+        {
+            get
+            {
+                return languageRadioBox;
+            }
+            set
+            {
+                languageRadioBox = value;
+                OnPropertyChanged(nameof(LanguageRadioBox));
+            }
+        }
 
-        public bool[] TimeRadioBox { get; set; } = new bool[3];
+        public bool[] TimeRadioBox
+        {
+            get
+            {
+                return timeRadioBox;
+            }
+            set
+            {
+                timeRadioBox = value;
+                OnPropertyChanged(nameof(TimeRadioBox));
+            }
+        }
 
-        public bool[] ComplexityRadioBox { get; set; } = new bool[2];
+        public bool[] ComplexityRadioBox
+        {
+            get
+            {
+                return complexityRadioBox;
+            }
+            set
+            {
+                complexityRadioBox = value;
+                OnPropertyChanged(nameof(ComplexityRadioBox));
+            }
+        }
 
         public Language Language
         {

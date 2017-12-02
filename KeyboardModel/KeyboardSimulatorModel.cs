@@ -41,6 +41,8 @@ namespace KeyboardModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public event EventHandler TextOver;
+
         public Complexity Complexity { get; set; }
 
         public Time Time { get; set; }
@@ -67,17 +69,33 @@ namespace KeyboardModel
 
         public ErrorStatistics ErrorStatistics { get; set; }
 
-        public void CheckCurrentSymbol(char symb)
+        public bool CheckCurrentSymbol(char symb)
         {
-            if (symb == Text.Peek())
+            bool res = false;
+             if (Timer.IsTimerWorking == true)
             {
-                ErrorStatistics.Correct();
-                Text.Pop();
+                try
+                {
+                    if (symb == Text.Peek())
+                    {
+                        ErrorStatistics.Correct();
+                        Text.Pop();
+                        OnPropertyChanged(nameof(Text));
+                        res = true;
+                    }
+                    else
+                    {
+                        ErrorStatistics.Error();
+                        res = false;
+                    }
+                }
+                catch (Exception exception)
+                {
+                    OnTextOver(null);
+
+                }
             }
-            else
-            {
-                ErrorStatistics.Error();
-            }
+            return res;
         }
 
         public void StartTimer()
@@ -99,6 +117,12 @@ namespace KeyboardModel
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        protected virtual void OnTextOver(EventArgs e)
+        {
+            if (TextOver != null)
+                TextOver(this, e);
         }
     }
 }

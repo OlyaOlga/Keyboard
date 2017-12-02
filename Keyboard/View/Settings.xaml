@@ -5,46 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Keyboard"
         mc:Ignorable="d"
-        Title="Settings"  ResizeMode="NoResize" Height="180" Width="306.666">
-    <Grid Margin="0,0,0,0">
+        Title="Settings"  ResizeMode="NoResize" Height="300" Width="330">
+    <Grid Margin="10,-18,28,36" Height="253" VerticalAlignment="Bottom">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="150"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0*"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="159"/>
+            <ColumnDefinition Width="141"/>
         </Grid.ColumnDefinitions>
 
-        <GroupBox x:Name="ComplexityGroupBox" Grid.Column="2" Header="Complexity" HorizontalAlignment="Left" VerticalAlignment="Top" Height="38" Width="151">
-            <WrapPanel>
-                <RadioButton x:Name="SimpleRadioButton" Content="Simple" HorizontalAlignment="Left"  Height="Auto"
+        <GroupBox x:Name="ComplexityGroupBox" Grid.Column="1" Header="Complexity" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="21,30,0,0" Height="110" Width="93">
+            <WrapPanel Margin="0,4,0,0">
+                <RadioButton x:Name="SimpleRadioButton" Content="Simple" HorizontalAlignment="Left"  Height="Auto"  Margin="0,10,0,0"
                              IsChecked="{Binding ComplexityRadioBox[0], Mode=TwoWay}"/>
-                <RadioButton x:Name="SimpleRadioButton0" Content="Hard" HorizontalAlignment="Left"  Height="Auto"
+                <RadioButton x:Name="SimpleRadioButton0" Content="Hard" HorizontalAlignment="Left"  Height="Auto"  Margin="0,10,0,0"
                              IsChecked="{Binding ComplexityRadioBox[1], Mode=TwoWay}"/>
             </WrapPanel>
         </GroupBox>
-        <GroupBox x:Name="LanguageGroupBox" Grid.Column="1" Header="Language" HorizontalAlignment="Left" VerticalAlignment="Top" Height="68" Width="140">
-            <WrapPanel>
-                <RadioButton x:Name="UrkLangRadioButton" Content="Ukraininan" HorizontalAlignment="Left"  VerticalAlignment="Top" 
+        <GroupBox x:Name="LanguageGroupBox" Grid.Row="0" Grid.Column="0" Header="Language" HorizontalAlignment="Left" VerticalAlignment="Top" Height="110"  Margin="10,30,0,0"  Width="139">
+            <WrapPanel Margin="0,4,0,0">
+                <RadioButton x:Name="UrkLangRadioButton" Content="Ukraininan" HorizontalAlignment="Left"  VerticalAlignment="Top"  Margin="0,4,0,0"
                              IsChecked="{Binding LanguageRadioBox[0], Mode=TwoWay}"/>
-                <RadioButton x:Name="EngLangRadioButton" Content="English" HorizontalAlignment="Left"  VerticalAlignment="Top" 
+                <RadioButton x:Name="EngLangRadioButton" Content="English" HorizontalAlignment="Left"  VerticalAlignment="Top"  Margin="0,4,0,0"
                              IsChecked="{Binding LanguageRadioBox[1], Mode=TwoWay}"/>
-                <RadioButton x:Name="SymbRadioButton" Content="Special Symbols" HorizontalAlignment="Left"  VerticalAlignment="Top"
+                <RadioButton x:Name="SymbRadioButton" Content="Special Symbols" HorizontalAlignment="Left"  VerticalAlignment="Top"  Margin="0,4,0,0"
                              IsChecked="{Binding LanguageRadioBox[2], Mode=TwoWay}"/>
             </WrapPanel>
         </GroupBox>
-        <GroupBox x:Name="TimeGroupBox" Header="Time" HorizontalAlignment="Left" VerticalAlignment="Top" Height="69" Width="141" Grid.Column="1" Margin="0,1,0,0" Grid.Row="1">
-            <WrapPanel>
-                <RadioButton x:Name="OneMinRadioButton" Content="1 minute" HorizontalAlignment="Left"  VerticalAlignment="Top"
+        <GroupBox x:Name="TimeGroupBox" Header="Time" HorizontalAlignment="Left" VerticalAlignment="Top" Height="100" Width="139" Grid.Column="0" Margin="10,1,0,0"
+                  Grid.Row="1">
+            <WrapPanel Margin="0,4,0,0">
+                <RadioButton x:Name="OneMinRadioButton" Content="1 minute" HorizontalAlignment="Left"  VerticalAlignment="Top"  Margin="0,4,0,0"
                              IsChecked="{Binding TimeRadioBox[0], Mode=TwoWay}"/>
-                <RadioButton x:Name="TwoMinRadioButton" Content="5 minutes" HorizontalAlignment="Left"  VerticalAlignment="Top" 
+                <RadioButton x:Name="TwoMinRadioButton" Content="5 minutes" HorizontalAlignment="Left"  VerticalAlignment="Top"  Margin="0,4,0,0"
                              IsChecked="{Binding TimeRadioBox[1], Mode=TwoWay}"/>
-                <RadioButton x:Name="FiveMinRadioButton" Content="10 minutes" HorizontalAlignment="Left"  VerticalAlignment="Top"
+                <RadioButton x:Name="FiveMinRadioButton" Content="10 minutes" HorizontalAlignment="Left"  VerticalAlignment="Top"  Margin="0,4,0,0"
                              IsChecked="{Binding TimeRadioBox[2], Mode=TwoWay}"/>
             </WrapPanel>
         </GroupBox>
+        <Button x:Name="SaveButton" Content="Save" Grid.Column="1" HorizontalAlignment="Left" Margin="21,19,0,0" Grid.Row="1" VerticalAlignment="Top" Width="93" Height="30"/>
+        <Button x:Name="CancelButton" Content="Cancel" Grid.Column="1" HorizontalAlignment="Left" Margin="21,54,0,0" Grid.Row="1" VerticalAlignment="Top" Width="93" Height="29"/>
 
 
     </Grid>

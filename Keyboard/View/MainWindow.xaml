@@ -11,7 +11,7 @@
         xmlns:behaviour="clr-namespace:Keyboard.View.Behaviour"
         xmlns:keyboardModel="clr-namespace:KeyboardModel;assembly=KeyboardModel"
         mc:Ignorable="d"
-        Title="Keyboard simulator" Height="350" Width="525"
+        Title="Keyboard simulator" Height="350" Width="1000"
         >
     <Window.InputBindings>
         <KeyBinding></KeyBinding>
@@ -46,19 +46,13 @@
                     <RowDefinition Height = "80"></RowDefinition>
                     <RowDefinition Height = "*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Image Grid.Column="0" Grid.Row="0" Width="80" Height="80" Source="../Images/pac-man-v2.png"/>
+                <Image Grid.Column="0" Grid.Row="0" Width="80" Height="80" Source="{Binding ImgWay}"/>
 
                 <ScrollViewer Grid.Column="1" Grid.Row="0" HorizontalScrollBarVisibility="Disabled"
                               VerticalScrollBarVisibility="Auto">
                     <TextBlock
-                        Text="The player controls Pac-Man through a maze of various dots,
-                               known as Pac-Dots, as well as four multi-colored ghosts: Blinky,
-                               Pinky, Inky, and Clyde. The goal of the game is to consume all the
-                               Pac-Dots in a stage in order to proceed to the next one. Between some stages
-                               Pac-Dots in a stage in order to proceed to the next one. Between some stages
-                               Pac-Dots in a stage in order to proceed to the next one. Between some stages
-                               Pac-Dots in a stage in order to proceed to the next one. Between some stages"
-                               Height="Auto" TextWrapping="WrapWithOverflow" Width="Auto"
+                        Text="{Binding KeyboardSimulatorModel.Text}"
+                               Height="Auto" TextWrapping="WrapWithOverflow" Width="Auto" FontSize="60px"
                                ></TextBlock>
                 </ScrollViewer>
                 <StackPanel Grid.Column="0" Grid.Row="1"  Margin="5" Orientation="Vertical">
@@ -66,7 +60,7 @@
                     <Label Content ="Complexity:"></Label>
                     <Label Content = "Total time:"> </Label>
                     <Label FontSize="20" Content="Time left:"></Label>
-                    <Button Margin="10" Content="Start" Command ="{Binding StartCountTimeCommand}">
+                    <Button Margin="10" Content="Start" Command ="{Binding StartCountTimeCommand}" CommandParameter="{Binding KeyboardSimulatorModel}">
                     </Button>
                 </StackPanel>
 
@@ -74,7 +68,8 @@
                     <Label Content ="{Binding CurrentSettings.LanguageID}"></Label>
                     <Label Content ="{Binding CurrentSettings.ComplexityID}"></Label>
                     <Label Content = "{Binding CurrentSettings.TimeID}"></Label>
-                    <Label FontSize="20" Content="{Binding KeyboardSimulatorModel.Timer.Remain}" ContentStringFormat="{}{0:mm}:{0:ss}" ></Label>
+                    <Label FontSize="20" Content="{Binding TimeElapsed}" ContentStringFormat="{}{0:mm}:{0:ss}" ></Label>
+                    <Button Margin="10" Content="Stop" Width ="30px" Command ="{Binding StopCountTimeCommand}" CommandParameter="{Binding KeyboardSimulatorModel}"></Button>
                 </StackPanel>
                 
             </Grid>

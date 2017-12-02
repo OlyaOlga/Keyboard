@@ -1,4 +1,8 @@
-﻿namespace Keyboard.ViewModel
+﻿using System.ComponentModel.Design;
+using System.Windows.Input;
+using Keyboard.Command;
+
+namespace Keyboard.ViewModel
 {
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
@@ -19,6 +23,8 @@
             LanguageRadioBox = new bool[3];
             TimeRadioBox = new bool[3];
             ComplexityRadioBox = new bool[2];
+            DefaultSettings();
+            SaveCommand = new RelayCommand(Save);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -93,10 +99,26 @@
         }
 
         public StatisticsIdentifier Setting => new StatisticsIdentifier(Complexity, Language, Time);
+
+        public ICommand SaveCommand { get; set; }
+
+        public ICommand CancelCommand { get; set; } 
     
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void DefaultSettings()
+        {
+            LanguageRadioBox[0]=true;
+            TimeRadioBox[0] = true;
+            ComplexityRadioBox[0]=true;
+        }
+
+        private void Save(object parametr)
+        {
+            
         }
     }
 }

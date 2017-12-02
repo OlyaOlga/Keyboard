@@ -8,25 +8,35 @@ namespace KeyboardModel
 
     public class RemainedTimeTimer : Timer, INotifyPropertyChanged
     {
-        private bool hasTimerStarted;
+        private bool isTimerWorking;
         public RemainedTimeTimer(double interval) :
             base(interval)
         {
-            this.AutoReset = true;
-            hasTimerStarted = false;
+            this.AutoReset = false;
+            IsTimerWorking = false;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
+        
         public DateTime StartTime { get; private set; }
 
         public DateTime EndTime { get; private set; }
+
+        public bool IsTimerWorking
+        {
+            get { return isTimerWorking; }
+            set
+            {
+                isTimerWorking = value;
+                OnPropertyChanged(nameof(IsTimerWorking));
+            }
+        }
 
         public TimeSpan Remain
         {
             get
             {
-                if (hasTimerStarted == true)
+                if (isTimerWorking == true)
                 {
                     return EndTime - DateTime.Now;
                 }
@@ -39,7 +49,7 @@ namespace KeyboardModel
             base.Start();
             StartTime = DateTime.Now;
             EndTime = StartTime.AddMilliseconds(Interval);
-            hasTimerStarted = true;
+            isTimerWorking = true;
         }
 
         [NotifyPropertyChangedInvocator]

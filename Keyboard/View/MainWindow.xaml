@@ -29,8 +29,9 @@
         <DockPanel Grid.Row="0">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_Training">
-                    <MenuItem Header="_Start"  />
-                    <MenuItem Header="_Statistics" />
+                    <MenuItem Header="_Start" Command ="{Binding StartCountTimeCommand}" CommandParameter="{Binding KeyboardSimulatorModel}"/>
+                    <MenuItem Header="_Stop" Command ="{Binding StopCountTimeCommand}" CommandParameter="{Binding KeyboardSimulatorModel}" />
+                    <MenuItem Header="_Statistics" Command ="{Binding OpenStatisticsCommand}"/>
                     <Separator />
                     <MenuItem x:Name="Settings" Header="_Settings" Command="{Binding OpenSettingsCommand}"/>
                 </MenuItem>
@@ -55,22 +56,33 @@
                                Height="Auto" TextWrapping="WrapWithOverflow" Width="Auto" FontSize="60px"
                                ></TextBlock>
                 </ScrollViewer>
-                <StackPanel Grid.Column="0" Grid.Row="1"  Margin="5" Orientation="Vertical">
-                    <Label Content ="Language:"> </Label>
-                    <Label Content ="Complexity:"></Label>
-                    <Label Content = "Total time:"> </Label>
-                    <Label FontSize="20" Content="Time left:"></Label>
-                    <Button Margin="10" Content="Start" Command ="{Binding StartCountTimeCommand}" CommandParameter="{Binding KeyboardSimulatorModel}">
-                    </Button>
-                </StackPanel>
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="500"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height = "20"></RowDefinition>
+                        <RowDefinition  Height = "*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Column="0" Grid.Row="1"  Margin="5" Orientation="Vertical">
+                        <Label Content ="Language:"></Label>
+                        <Label Content ="Complexity:"></Label>
+                        <Label Content = "Total time:"></Label>
+                        <Label FontSize="20" Content="Time left:"></Label>
+                        <Button Margin="10" Width="80px" HorizontalAlignment="Left" Content="Start" Command ="{Binding StartCountTimeCommand}" CommandParameter="{Binding KeyboardSimulatorModel}">
+                        </Button>
+                    </StackPanel>
 
-                <StackPanel Grid.Column="1" Grid.Row="1"  Margin="5" Orientation="Vertical">
-                    <Label Content ="{Binding CurrentSettings.LanguageID}"></Label>
-                    <Label Content ="{Binding CurrentSettings.ComplexityID}"></Label>
-                    <Label Content = "{Binding CurrentSettings.TimeID}"></Label>
-                    <Label FontSize="20" Content="{Binding TimeElapsed}" ContentStringFormat="{}{0:mm}:{0:ss}" ></Label>
-                    <Button Margin="10" Content="Stop" Width ="30px" Command ="{Binding StopCountTimeCommand}" CommandParameter="{Binding KeyboardSimulatorModel}"></Button>
-                </StackPanel>
+                    <StackPanel Grid.Column="1" Grid.Row="1"  Margin="5" Orientation="Vertical">
+                        <Label Content ="{Binding CurrentSettings.LanguageID}"></Label>
+                        <Label Content ="{Binding CurrentSettings.ComplexityID}"></Label>
+                        <Label Content = "{Binding CurrentSettings.TimeID}"></Label>
+                        <Label FontSize="20" Content="{Binding TimeElapsed}" ContentStringFormat="{}{0:mm}:{0:ss}" ></Label>
+                        <Button Margin="10" Width="80px" HorizontalAlignment="Left" Content="Stop" Command ="{Binding StopCountTimeCommand}" CommandParameter="{Binding KeyboardSimulatorModel}"></Button>
+                    </StackPanel>
+                </Grid>
+             
                 
             </Grid>
         </DockPanel>

@@ -57,6 +57,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CustomCircle.cs" />
+    <Compile Include="Statistics.xaml.cs">
+      <DependentUpon>Statistics.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\StatisticsViewModel.cs" />
     <Compile Include="ViewModel\ViewModelExtension\KeyToCharExtension.cs" />
     <Compile Include="ViewModel\ViewModelExtension\EnumBuilder.cs" />
     <Compile Include="View\Settings.xaml.cs">
@@ -67,6 +72,10 @@
     <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\WindowMediator.cs" />
+    <Page Include="Statistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

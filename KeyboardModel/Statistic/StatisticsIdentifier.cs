@@ -87,6 +87,12 @@ namespace KeyboardModel.Statistic
             return !(left == right);
         }
 
+        public override string ToString()
+        {
+            return $"Language: {languageID} Time: {timeID} Complexity: {ComplexityID}";
+        }
+
+        [field: NonSerialized]
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

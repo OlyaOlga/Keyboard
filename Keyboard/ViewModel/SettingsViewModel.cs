@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Design;
+﻿using System;
+using System.ComponentModel.Design;
 using System.Windows.Input;
 using Keyboard.Command;
 
@@ -18,6 +19,8 @@ namespace Keyboard.ViewModel
 
         private bool[] complexityRadioBox;
 
+        private bool shouldSaveChanges;
+
         public SettingsViewModel()
         {
             LanguageRadioBox = new bool[3];
@@ -25,6 +28,8 @@ namespace Keyboard.ViewModel
             ComplexityRadioBox = new bool[2];
             DefaultSettings();
             SaveCommand = new RelayCommand(Save);
+            CancelCommand = new RelayCommand(Cancel);
+            shouldSaveChanges = false;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -65,6 +70,18 @@ namespace Keyboard.ViewModel
             {
                 complexityRadioBox = value;
                 OnPropertyChanged(nameof(ComplexityRadioBox));
+            }
+        }
+
+        public bool ShouldSaveChanges
+        {
+            get
+            {
+                return shouldSaveChanges;
+            }
+            set
+            {
+                shouldSaveChanges = value;
             }
         }
 
@@ -118,7 +135,15 @@ namespace Keyboard.ViewModel
 
         private void Save(object parametr)
         {
-            
+            Keyboard.View.Settings SettingsWindow = parametr as Keyboard.View.Settings;
+            ShouldSaveChanges = true;
+            SettingsWindow.Close();
+        }
+
+        private void Cancel(object parametr)
+        {
+            Keyboard.View.Settings SettingsWindow = parametr as Keyboard.View.Settings;
+            SettingsWindow.Close();
         }
     }
 }

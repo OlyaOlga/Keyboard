@@ -82,17 +82,18 @@ namespace KeyboardModel
                         Text.Pop();
                         OnPropertyChanged(nameof(Text));
                         res = true;
+                        Console.WriteLine("Correct: "+symb);
                     }
                     else
                     {
                         ErrorStatistics.Error();
                         res = false;
+                        Console.WriteLine("Wrong: "+symb);
                     }
                 }
                 catch (Exception exception)
                 {
                     OnTextOver(null);
-
                 }
             }
             return res;

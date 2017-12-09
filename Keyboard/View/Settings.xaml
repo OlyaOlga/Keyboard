@@ -45,8 +45,10 @@
                              IsChecked="{Binding TimeRadioBox[2], Mode=TwoWay}"/>
             </WrapPanel>
         </GroupBox>
-        <Button x:Name="SaveButton" Content="Save" Grid.Column="1" HorizontalAlignment="Left" Margin="21,19,0,0" Grid.Row="1" VerticalAlignment="Top" Width="93" Height="30"/>
-        <Button x:Name="CancelButton" Content="Cancel" Grid.Column="1" HorizontalAlignment="Left" Margin="21,54,0,0" Grid.Row="1" VerticalAlignment="Top" Width="93" Height="29"/>
+        <Button x:Name="SaveButton" Content="Save" Grid.Column="1" HorizontalAlignment="Left" Margin="21,19,0,0" Grid.Row="1" VerticalAlignment="Top" Width="93" Height="30"
+                Command ="{Binding SaveCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
+        <Button x:Name="CancelButton" Content="Cancel" Grid.Column="1" HorizontalAlignment="Left" Margin="21,54,0,0" Grid.Row="1" VerticalAlignment="Top" Width="93" Height="29"
+                Command ="{Binding CancelCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
 
 
     </Grid>

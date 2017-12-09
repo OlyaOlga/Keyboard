@@ -11,7 +11,7 @@
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel(
+             var view = new MainWindowViewModel(
                     new WindowMediator
                     {
                         CreateWindow = () => new Settings()
@@ -19,6 +19,8 @@
             {
                 Settings = new SettingsViewModel()
             };
+            DataContext = view;
+            Closing += view.OnWindowClosing;
         }
     }
 }

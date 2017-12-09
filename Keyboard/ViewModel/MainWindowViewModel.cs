@@ -20,7 +20,7 @@ namespace Keyboard.ViewModel
     {
         private string waitPackMan = "../Images/pac_man_wait.jpg";
         private string eatingPackMan = "../Images/pac_man_eats.jpg";
-        private string statisticsFileName = "statistics.txt";
+        private string statisticsFileName = "../../statistics.txt";
         private SettingsViewModel settings;
         private StatisticsIdentifier currentSettings;
         private KeyboardSimulatorModel keyboardSimulatorModel;

@@ -13,8 +13,6 @@ namespace KeyboardModel
     {
         private InputTextQueue text;
 
-        private string fileName = "statistics.txt";
-
         public KeyboardSimulatorModel(Complexity complexity, Time time, Language language)
         {
             Complexity = complexity;

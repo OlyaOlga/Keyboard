@@ -20,7 +20,7 @@ namespace KeyboardModel
             Complexity = complexity;
             Time = time;
             Language = language;
-            var path = complexity.ToString() + '/' + language.ToString() + ".txt";
+            var path = "../../"+complexity.ToString() + '/' + language.ToString() + ".txt";
             Text = new InputTextQueue(File.ReadAllText(path));
             Timer = new RemainedTimeTimer(60000 * (int)Time);
             StatisticsIdentifier = new StatisticsIdentifier(complexity, language, time);

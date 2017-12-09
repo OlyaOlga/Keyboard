@@ -58,9 +58,35 @@ namespace Keyboard.ViewModel
                 currentErrorStatistics = value;
                 OnPropertyChanged(nameof(CurrentErrorStatistics));
             }
-
         }
 
+        public List<KeyValuePair< string, List< KeyValuePair<string, int>>>> GlobalStatisticsKeyValuePairs
+        {
+            get
+            {
+                List<KeyValuePair<string, List<KeyValuePair<string, int>>>> result = new List<KeyValuePair<string, List<KeyValuePair<string, int>>>>();
+                foreach (var item in GlobalStatistics.LocalStatistics)
+                {
+                    var currentCorrectValue = new KeyValuePair<string, int>("Correct", (int) item.Value.Result.Correct);
+                    var currentInCorrectValue = new KeyValuePair<string, int>("Incorrect", (int)item.Value.Result.Error);
+                    var currentList = new List<KeyValuePair<string, int>> {currentCorrectValue, currentInCorrectValue};
+                    result.Add(new KeyValuePair<string, List<KeyValuePair<string, int>>> (item.Key.ToString(), currentList));
+                }
+                return result;
+            }
+        }
+
+        public List<KeyValuePair<string, int>> CurrentStatisticsKeyValuePairs
+        {
+            get
+            {
+                return new List<KeyValuePair<string, int>>
+                {
+                    new KeyValuePair<string, int>("Correct", (int) CurrentErrorStatistics.Result.Correct),
+                    new KeyValuePair<string, int>("Incorrect", (int) CurrentErrorStatistics.Result.Error)
+                };
+            }
+        }
 
         public List<KeyValuePair<StatisticsIdentifier, ErrorStatistics>> StatisticsList
         {

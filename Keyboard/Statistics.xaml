@@ -4,32 +4,31 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Keyboard"
+        xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
         mc:Ignorable="d"
-        Title="Statistics" Height="Auto" Width="Auto" d:DesignWidth="542.737" d:DesignHeight="380.132">
-    <Grid Margin="8,0,0,8">
+        Title="Statistics" Height="Auto" Width="Auto" d:DesignWidth="300" d:DesignHeight="380.132">
+    <Grid Margin="10,10,10,10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="100" />
+            <RowDefinition Height="250" />
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel  Grid.Row="0" Width="400"  Height="200" HorizontalAlignment="Left">
-        <Label Content="Current Statistics"></Label>
-        <Label Content="{Binding CurrentStatisticsIdentifier}"></Label>
-        <Label Content="{Binding CurrentErrorStatistics.Result.Correct}"></Label>
-            <ProgressBar  Minimum="0" Maximum="100" Value="{Binding CurrentErrorStatistics.Result.Correct}"  Height="30"/>
+        <StackPanel  Grid.Row="0" Width="400"  HorizontalAlignment="Center">
+            <Label FontSize="30" Content="Current: "></Label>
+            <chartingToolkit:Chart  Name="local" Title="{Binding CurrentStatisticsIdentifier}" VerticalAlignment="Top" Height="200">
+                <chartingToolkit:PieSeries DependentValuePath="Value" IndependentValuePath="Key" ItemsSource="{Binding CurrentStatisticsKeyValuePairs}" IsSelectionEnabled="True" />
+            </chartingToolkit:Chart>
         </StackPanel>
 
         <Label Grid.Row="1" Content="Global Statistics"/>
 
-        <ListView Grid.Row="2" ItemsSource="{Binding StatisticsList}">
+        <ListView Grid.Row="2" ItemsSource="{Binding GlobalStatisticsKeyValuePairs}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Width="400"  Height="70">
-                        <TextBlock Text="{Binding Key}" />
-                        <TextBlock Text="{Binding Value.Result.Correct}" FontWeight="Bold" />
-                        <ProgressBar  Minimum="0" Maximum="100" Value="{Binding Value.Result.Correct}" Height="30"/>
-                    </StackPanel>
+                    <chartingToolkit:Chart  Name="global" Title="{Binding Key}" VerticalAlignment="Top" Height="200">
+                        <chartingToolkit:PieSeries DependentValuePath="Value" IndependentValuePath="Key" ItemsSource="{Binding Value}" IsSelectionEnabled="True" />
+                    </chartingToolkit:Chart>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
